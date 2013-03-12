@@ -1,0 +1,231 @@
+\documentclass{beamer}
+\usetheme{default}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},  % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                % sets automatic line breaking
+  captionpos=b,                   % sets the caption-position to bottom
+  commentstyle=\color{dkgreen},   % comment style
+  deletekeywords={...},           % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},         % if you want to add LaTeX within your code
+  extendedchar=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                   % adds a frame around the code
+  keywordstyle=\color{blue},      % keyword style
+  language=Octave,                % the language of the code
+  morekeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                   % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,               % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,         % underline spaces within strings only
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mauve},      % string literal style
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  title=\lstname                  % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\lstset{language=C,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\footnotesize\color{blue}\ttfamily,
+  moredelim=**[is][\btHL]{`}{`},
+}
+
+\begin{document}
+
+\pdfinfo
+    {
+      /Title       (Formation Git)
+      /Creator     (Tex)
+      /Author      (Nicolas Aguirre)
+    }
+
+
+    \title{Formation GIT}
+    \subtitle{Git FTW!}
+    \author{Nicolas Aguirre}
+    \date{11 Mars 2013}
+
+    \frame{\titlepage}
+
+    \section{Introduction}
+    \begin{frame}
+      \frametitle{Historique}
+      \begin{itemize}
+      \item Projet initié par Linus Torvalds pour le noyau linux.
+      \item Premiére version le 7 Avril 2005.
+      \item Logiciel de gestion de versions decentralisé.
+      \item Semblable à Mercurial ou Bitkeeper
+      \item Version actuelle 1.8.0
+      \item Licence GPLv2
+      \item http://git-scm.com
+      \end{itemize}
+    \end{frame}
+%-------------------------------------------------------------------------------
+    \section{Workflows}
+    \begin{frame}
+      \frametitle{Workflows}
+      \begin{itemize}
+        \item GIT != SVN
+        \item Ne jamais se demander quelle est la version SVN de cette commande
+        \item svn add != git add
+        \item Dans svn trunk est LA branche
+        \item Dans git master est UNE branche parmis d'autres
+      \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Workflow développeur}
+      \begin{itemize}
+        \item creer une branche de dev
+        \item Commiter comme bon vous semble
+        \item Aussi souvent que vous voulez
+        \item Quand vous voulez
+        \item Pusher ou merger les commits en ensembles cohérents
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Workflow développeur}
+      \begin{itemize}
+        \item Supprime la peur de ne pas être à jour.
+        \item Permet de faire de la revue de code sur des ensembles cohérents.
+        \item Permet de travailler par fonctionnalités.
+        \item Permet d'expérimenter dans des branches.
+        \item Le développeur deviens un producteur de code source.
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Workflow de l'intégrateur}
+      \begin{itemize}
+        \item Récupération des commits dans une branche
+        \item Intégration par fonctionalités
+        \item Test des fonctionalités
+      \end{itemize}
+    \end{frame}
+%-------------------------------------------------------------------------------
+    \section{Les informations de commits}
+
+    \begin{frame}
+      \frametitle{Comment sont stockées les données dans SVN}
+      \begin{itemize}
+        \item Dans SVN l'information d'un commit est stockée sous forme de différences :
+%         \includegraphics[width=8cm]{imgs/deltas.eps}
+      \end{itemize}
+    \end{frame}
+
+   \begin{frame}
+      \frametitle{Comment sont stockées les données dans GIT}
+      \begin{itemize}
+        \item Git fait un snapshot des fichiers a chaque version:
+%         \includegraphics[width=8cm]{imgs/snapshot.eps}
+      \end{itemize}
+    \end{frame}
+
+   \begin{frame}
+      \frametitle{Toutes les informations sont stockées en local}
+      \begin{itemize}
+        \item toutes les informations sont stockées en local sur votre disque
+        \item pas de latence due au réseau
+        \item l'historique de tout le projet est local par exemple
+        \item Toutes les objets git sont Hashés en SHA-1
+      \end{itemize}
+    \end{frame}
+%-------------------------------------------------------------------------------
+   \section{les 3 zones}
+
+   \begin{frame}
+     \frametitle{Les 3 zones}
+     \begin{itemize}
+     \item \alert{La chose la plus importante a retenir !}
+     \item la zone ``working directory''
+     \item la zone ``staging areaé''
+     \item la zone ``git directory(repository)''
+     \item \alert{La chose la plus importante a retenir !}
+     \end{itemize}
+   \end{frame}
+
+  \begin{frame}
+     \frametitle{Git directory}
+     \begin{itemize}
+     \item C'est ce qui est copié lorsque vous clonez un repository d'un autre endroit.
+     \end{itemize}
+   \end{frame}
+
+  \begin{frame}
+     \frametitle{Working directory}
+     \begin{itemize}
+     \item C'est un snapshot d'une des version du projet.
+     \item Les fichiers sont issues de la base de donnée du git directory.
+     \item git les placent sur le disque pour que vous puissiez les utiliser ou les modifier.
+     \end{itemize}
+   \end{frame}
+
+  \begin{frame}
+     \frametitle{Staging Area}
+     \begin{itemize}
+     \item C'est un fichier qui contient les informations de ce qui ira dans votre prochain commit.
+     \item Les fichiers sont issues de la base de donnée du git directory.
+     \item git les placent sur le disque pour que vous puissiez les utiliser ou les modifier.
+     \end{itemize}
+   \end{frame}
+
+  \begin{frame}
+     \frametitle{La vie d'un commit}
+     \begin{itemize}
+     \item Modifications de fichiers dans le working directory => utilisation d'un editeur de fichier
+     \item Modification file1 file2 file3
+     \item Ajout des fichiers dans la staging area : 
+       \item git add file1
+       \item git add file2
+       \item git add file3
+     \item Commit : passage des fichiers file1, file2 et file3 dans la git directory 
+       \item git commit
+     \end{itemize}
+   \end{frame}
+
+  \begin{frame}
+     \frametitle{Exemple}
+     \begin{itemize}
+     \item Initialization du repository
+     \item git init
+     \item Ajout d'un fichier dans la stagin area
+     \item git add README
+     \item Commit :
+     \item git commit
+     \end{itemize}
+  \end{frame}
+
+%-------------------------------------------------------------------------------
+  \section{Travailler avec un repo distant
+  \begin{frame}
+    \frametitle{Clone}
+    \begin{itemize}
+    \item git clone git@172.26.238.64:/opt/git/formation-git.git
+    \item 
+    \item Ajout d'un fichier dans la stagin area
+    \item git add README
+    \item Commit :
+    \item git commit
+    \end{itemize}
+  \end{frame}
+  
+
+\end{document}
