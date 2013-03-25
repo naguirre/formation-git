@@ -127,7 +127,7 @@
       \frametitle{Comment sont stockées les données dans SVN}
       \begin{itemize}
         \item Dans SVN l'information d'un commit est stockée sous forme de différences :
-%         \includegraphics[width=8cm]{imgs/deltas.eps}
+         \includegraphics[width=8cm]{imgs/deltas.eps}
       \end{itemize}
     \end{frame}
 
@@ -135,7 +135,7 @@
       \frametitle{Comment sont stockées les données dans GIT}
       \begin{itemize}
         \item Git fait un snapshot des fichiers a chaque version:
-%         \includegraphics[width=8cm]{imgs/snapshot.eps}
+         \includegraphics[width=8cm]{imgs/snapshot.eps}
       \end{itemize}
     \end{frame}
 
@@ -156,16 +156,22 @@
      \begin{itemize}
      \item \alert{La chose la plus importante a retenir !}
      \item la zone ``working directory''
-     \item la zone ``staging areaé''
+     \item la zone ``staging area''
      \item la zone ``git directory(repository)''
      \item \alert{La chose la plus importante a retenir !}
      \end{itemize}
    \end{frame}
 
   \begin{frame}
+     \frametitle{Les 3 zones}
+     \includegraphics[width=11cm]{imgs/3zones.eps}
+  \end{frame}
+
+  \begin{frame}
      \frametitle{Git directory}
      \begin{itemize}
      \item C'est ce qui est copié lorsque vous clonez un repository d'un autre endroit.
+     \item C'est la base de donnée de git, c'est l'endroit où il stocke tous les commits, et toutes les relations entre commits.
      \end{itemize}
    \end{frame}
 
@@ -188,44 +194,50 @@
    \end{frame}
 
   \begin{frame}
-     \frametitle{La vie d'un commit}
-     \begin{itemize}
-     \item Modifications de fichiers dans le working directory => utilisation d'un editeur de fichier
-     \item Modification file1 file2 file3
-     \item Ajout des fichiers dans la staging area : 
-       \item git add file1
-       \item git add file2
-       \item git add file3
-     \item Commit : passage des fichiers file1, file2 et file3 dans la git directory 
-       \item git commit
-     \end{itemize}
-   \end{frame}
+     \frametitle{Mon premier commit}
+     \includegraphics[width=9cm]{imgs/first_commit.eps}
+  \end{frame}
 
   \begin{frame}
-     \frametitle{Exemple}
-     \begin{itemize}
-     \item Initialization du repository
-     \item git init
-     \item Ajout d'un fichier dans la stagin area
-     \item git add README
-     \item Commit :
-     \item git commit
-     \end{itemize}
+     \frametitle{git status}
+     \includegraphics[width=9cm]{imgs/status.eps}
   \end{frame}
+
+\begin{frame}[fragile]\frametitle{Visualisation}
+  Historique des commits: \verb|git log|
+
+  \begin{semiverbatim}
+  \$ \alert{git log}
+  \end{semiverbatim}
+
+  Visualisation des différences: \verb|git diff et git diff --staged|
+  \begin{semiverbatim}
+  \$ \alert{git diff}
+  \$ \alert{git diff --staged}
+  \end{semiverbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Récapitulatif des commandes}
+
+  \begin{semiverbatim}
+    \$ git add
+    \$ git commit
+    \$ git status
+    \$ git diff
+    \$ git log
+  \end{semiverbatim}
+
+
+\end{frame}
 
 %-------------------------------------------------------------------------------
-  \section{Travailler avec un repo distant
-  \begin{frame}
-    \frametitle{Clone}
-    \begin{itemize}
-    \item git clone git@172.26.238.64:/opt/git/formation-git.git
-    \item 
-    \item Ajout d'un fichier dans la stagin area
-    \item git add README
-    \item Commit :
-    \item git commit
-    \end{itemize}
-  \end{frame}
-  
+
+    \section{Travailler avec des serveurs distants}
+    \begin{frame}
+      \frametitle{Buildroot}
+        \includegraphics[width=9cm]{imgs/buildroot.eps}
+    \end{frame}
+
 
 \end{document}
