@@ -1,5 +1,5 @@
 \documentclass{beamer}
-\usetheme{default}
+\usetheme{Boadilla}
 \usepackage{thumbpdf}
 \usepackage{wasysym}
 \usepackage{ucs}
@@ -8,14 +8,18 @@
 \usepackage{verbatim}
 \usepackage{listings}
 \usepackage{color}
-\usepackage[none]{ubuntu}
 \begin{document}
+
+\setbeamertemplate{navigation symbols}{%
+
+}
 
 \pdfinfo
     {
       /Title       (Formation Git)
       /Creator     (Tex)
       /Author      (Nicolas Aguirre)
+      /Date        (26 Mars 2013)
     }
 
 
@@ -46,7 +50,7 @@
       \frametitle{Historique}
       \begin{itemize}
       \item Projet initié par Linus Torvalds pour le noyau linux.
-      \item Premiére version le 7 Avril 2005.
+      \item Première version le 7 Avril 2005.
       \item Logiciel de gestion de versions decentralisé.
       \item Semblable à Mercurial ou Bitkeeper.
       \item Version actuelle 1.8.0
@@ -85,7 +89,6 @@
         \item Créer une branche de dev.
         \item Commiter comme bon vous semble.
         \item Aussi souvent que vous voulez.
-        \item Quand vous voulez.
         \item Pusher ou merger les commits en ensembles cohérents.
       \end{itemize}
     \end{frame}
@@ -109,6 +112,15 @@
         \item Test des fonctionalités.
         \item Génération de branche par livraison.
         \item Génération de tags.
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Workflow de la société}
+      \begin{itemize}
+        \item Utilisation d'un serveur de référence.
+        \item Possibilité de stocker toutes les branches des développeurs et des intégrateurs.
+        \item Possibiltié de stocker uniquement les branches livrées.
       \end{itemize}
     \end{frame}
 %-------------------------------------------------------------------------------
@@ -144,8 +156,8 @@
     \begin{frame}
       \frametitle{Comment sont stockées les données dans GIT}
       \begin{itemize}
-      \item Git indexe les fichiers d'après leur SHA1.
-      \item Les fichiers sont sonc stockés uniquement si ils sont modifiés.
+      \item Git indexe les fichiers d'après leur somme de contrôle SHA1.
+      \item Les fichiers sont donc stockés uniquement si ils sont modifiés.
       \item Si un fichier est modifié il est stocké deux fois sur le disque.
       \end{itemize}
     \end{frame}
@@ -156,7 +168,7 @@
         \item Toutes les informations sont stockées en local sur votre disque.
         \item Pas de latence due au réseau.
         \item L'historique de tout le projet est local.
-        \item Toutes les objets git sont Hashés en SHA-1.
+        \item Toutes les objets git ont une somme de contrôle SHA-1.
       \end{itemize}
     \end{frame}
 %-------------------------------------------------------------------------------
@@ -181,8 +193,9 @@
   \begin{frame}
      \frametitle{Git directory}
      \begin{itemize}
-     \item C'est ce qui est copié lorsque vous clonez un repository d'un autre endroit.
-     \item C'est la base de donnée de git, c'est l'endroit où il stocke tous les commits, et toutes les relations entre commits.
+     \item C'est ce qui est copié lorsque vous clonez un dépôt d'un autre endroit.
+     \item C'est la base de donnée de git.
+     \item C'est l'endroit où il stocke tous les commits, et toutes les relations entre commits.
      \end{itemize}
    \end{frame}
 
@@ -295,7 +308,7 @@
   \frametitle{Récapitulatif des commandes}
   \begin{itemize}
   \item push : action d'envoyer les commits ainsi que les relations entre commits vers le serveur distant (origin par défaut).
-  \item fetch : action de récuéprer les commits ainsi que les relations entre commits depuis le serveur distant.
+  \item fetch : action de récupérer les commits ainsi que les relations entre commits depuis le serveur distant.
   \end{itemize}
 \end{frame}
 
@@ -316,7 +329,7 @@
 \begin{frame}
   \frametitle{Checkout}
   \begin{semiverbatim}
-    \$ git checkout tag/sha1/branch
+    \$ git checkout (tag ou sha1 ou branch)
     
     Git présente sur le systeme de fichier la version qu'on lui demande.
   \end{semiverbatim}
@@ -330,7 +343,7 @@
     \$ git pull --rebase
   \end{semiverbatim}
   \begin{itemize}
-  \item Git récupére les commits distant et merge la branche actuelle avec la branche distante.
+  \item Git récupère les commits distant et merge la branche actuelle avec la branche distante.
   \item Par défaut git merge les branches lors d'un pull.
   \item Rebase la branche actuelle avec la branche distante.
   \end{itemize}
@@ -359,7 +372,7 @@
 
 %-------------------------------------------------------------------------------
 
-\section{Commande avancées}
+\section{Commandes avancées}
 \begin{frame}
   \frametitle{Pour aller plus loin}
   \begin{semiverbatim}
@@ -376,6 +389,8 @@
   \frametitle{Credits}
   \begin{itemize}
   \item http://blog.octo.com/git-dans-la-pratique-22/
+  \item pour récupérer la formation:
+  \item git clone https://github.com/naguirre/formation-git.git
   \end{itemize}
   
 \end{frame}
