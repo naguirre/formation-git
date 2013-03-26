@@ -8,45 +8,7 @@
 \usepackage{verbatim}
 \usepackage{listings}
 \usepackage{color}
-
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{ %
-  backgroundcolor=\color{white},  % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
-  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                % sets automatic line breaking
-  captionpos=b,                   % sets the caption-position to bottom
-  commentstyle=\color{dkgreen},   % comment style
-  deletekeywords={...},           % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},         % if you want to add LaTeX within your code
-  extendedchar=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,                   % adds a frame around the code
-  keywordstyle=\color{blue},      % keyword style
-  language=Octave,                % the language of the code
-  morekeywords={*,...},           % if you want to add more keywords to the set
-  numbers=left,                   % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                  % how far the line-numbers are from the code
-  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
-  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,               % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,         % underline spaces within strings only
-  showtabs=false,                 % show tabs within strings adding particular underscores
-  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mauve},      % string literal style
-  tabsize=2,                      % sets default tabsize to 2 spaces
-  title=\lstname                  % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
-
-
-\lstset{language=C,
-  basicstyle=\footnotesize\ttfamily,
-  keywordstyle=\footnotesize\color{blue}\ttfamily,
-  moredelim=**[is][\btHL]{`}{`},
-}
-
+\usepackage[none]{ubuntu}
 \begin{document}
 
 \pdfinfo
@@ -58,46 +20,73 @@
 
 
     \title{Formation GIT}
-    \subtitle{Git FTW!}
+    \subtitle{Logiciel de gestion de version décentralisé}
     \author{Nicolas Aguirre}
-    \date{11 Mars 2013}
+    \date{26 Mars 2013}
 
     \frame{\titlepage}
+%-------------------------------------------------------------------------------
+    \begin{frame}\frametitle{Plan}
+      \tableofcontents
+    \end{frame}
+  %-------------------------------------------------------------------------------
 
-    \section{Introduction}
+    \section{Présentation de Git}
+
+    \begin{frame}
+      \frametitle{Définition de GIT}
+      \begin{itemize}
+        \item Logiciel de gestion de version décentralisé
+        \item Permet de stocker un ensemble de fichiers en conservant la chronologie des modifications
+        \item Permet de stocker l'ensemble des modifications et des relations localement sans avoir à se connecter à un serveur.
+      \end{itemize}
+    \end{frame}
+
     \begin{frame}
       \frametitle{Historique}
       \begin{itemize}
       \item Projet initié par Linus Torvalds pour le noyau linux.
       \item Premiére version le 7 Avril 2005.
       \item Logiciel de gestion de versions decentralisé.
-      \item Semblable à Mercurial ou Bitkeeper
+      \item Semblable à Mercurial ou Bitkeeper.
       \item Version actuelle 1.8.0
-      \item Licence GPLv2
+      \item Licence GPLv2.
       \item http://git-scm.com
       \end{itemize}
     \end{frame}
+
+    \begin{frame}
+      \frametitle{Git vs SVN}
+      \begin{itemize}
+        \item GIT != SVN.
+        \item Ne jamais se demander quelle est la version SVN de cette commande.
+        \item svn checkout != git checkout.
+        \item Dans svn trunk est LA branche.
+        \item Dans git master est UNE branche parmis d'autres.
+      \end{itemize}
+    \end{frame}
+
 %-------------------------------------------------------------------------------
-    \section{Workflows}
+    \section{Notions de Workflows}
     \begin{frame}
       \frametitle{Workflows}
       \begin{itemize}
-        \item GIT != SVN
-        \item Ne jamais se demander quelle est la version SVN de cette commande
-        \item svn add != git add
-        \item Dans svn trunk est LA branche
-        \item Dans git master est UNE branche parmis d'autres
+        \item Un workflow est un ensemble de tâches et d'opérations effectuées par:
+          \begin{itemize}
+            \item Un développeur;
+            \item Un intégrateur;
+            \item Une société;
+          \end{itemize}
       \end{itemize}
     \end{frame}
-    
     \begin{frame}
       \frametitle{Workflow développeur}
       \begin{itemize}
-        \item creer une branche de dev
-        \item Commiter comme bon vous semble
-        \item Aussi souvent que vous voulez
-        \item Quand vous voulez
-        \item Pusher ou merger les commits en ensembles cohérents
+        \item Créer une branche de dev.
+        \item Commiter comme bon vous semble.
+        \item Aussi souvent que vous voulez.
+        \item Quand vous voulez.
+        \item Pusher ou merger les commits en ensembles cohérents.
       \end{itemize}
     \end{frame}
 
@@ -106,28 +95,39 @@
       \begin{itemize}
         \item Supprime la peur de ne pas être à jour.
         \item Permet de faire de la revue de code sur des ensembles cohérents.
-        \item Permet de travailler par fonctionnalités.
+        \item Permet de travailler par fonctionnalitées.
         \item Permet d'expérimenter dans des branches.
-        \item Le développeur deviens un producteur de code source.
+        \item Le développeur devient un producteur de code source.
       \end{itemize}
     \end{frame}
 
     \begin{frame}
       \frametitle{Workflow de l'intégrateur}
       \begin{itemize}
-        \item Récupération des commits dans une branche
-        \item Intégration par fonctionalités
-        \item Test des fonctionalités
+        \item Récupération des commits dans une branche.
+        \item Intégration par fonctionalités.
+        \item Test des fonctionalités.
+        \item Génération de branche par livraison.
+        \item Génération de tags.
       \end{itemize}
     \end{frame}
 %-------------------------------------------------------------------------------
-    \section{Les informations de commits}
+    \section{Base de données GIT}
+
+    \begin{frame}
+      \frametitle{Répertoire .git}
+      \begin{itemize}
+      \item La base de donnée est stockée dans le répertoire .git à la racine de votre projet.
+      \end{itemize}
+    \end{frame}
 
     \begin{frame}
       \frametitle{Comment sont stockées les données dans SVN}
       \begin{itemize}
-        \item Dans SVN l'information d'un commit est stockée sous forme de différences :
-         \includegraphics[width=8cm]{imgs/deltas.eps}
+        \item Dans SVN l'information d'un commit est stockée sous forme de différences:
+          \begin{center}
+            \includegraphics[width=8cm]{imgs/deltas.eps}
+          \end{center}
       \end{itemize}
     \end{frame}
 
@@ -135,36 +135,47 @@
       \frametitle{Comment sont stockées les données dans GIT}
       \begin{itemize}
         \item Git fait un snapshot des fichiers a chaque version:
-         \includegraphics[width=8cm]{imgs/snapshot.eps}
+          \begin{center}
+            \includegraphics[width=8cm]{imgs/snapshot.eps}
+          \end{center}
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Comment sont stockées les données dans GIT}
+      \begin{itemize}
+      \item Git indexe les fichiers d'après leur SHA1.
+      \item Les fichiers sont sonc stockés uniquement si ils sont modifiés.
+      \item Si un fichier est modifié il est stocké deux fois sur le disque.
       \end{itemize}
     \end{frame}
 
    \begin{frame}
       \frametitle{Toutes les informations sont stockées en local}
       \begin{itemize}
-        \item toutes les informations sont stockées en local sur votre disque
-        \item pas de latence due au réseau
-        \item l'historique de tout le projet est local par exemple
-        \item Toutes les objets git sont Hashés en SHA-1
+        \item Toutes les informations sont stockées en local sur votre disque.
+        \item Pas de latence due au réseau.
+        \item L'historique de tout le projet est local.
+        \item Toutes les objets git sont Hashés en SHA-1.
       \end{itemize}
     \end{frame}
 %-------------------------------------------------------------------------------
-   \section{les 3 zones}
+   \section{Les 3 zones}
 
    \begin{frame}
      \frametitle{Les 3 zones}
      \begin{itemize}
-     \item \alert{La chose la plus importante a retenir !}
      \item la zone ``working directory''
      \item la zone ``staging area''
      \item la zone ``git directory(repository)''
-     \item \alert{La chose la plus importante a retenir !}
      \end{itemize}
    \end{frame}
 
   \begin{frame}
      \frametitle{Les 3 zones}
-     \includegraphics[width=11cm]{imgs/3zones.eps}
+     \begin{center}
+       \includegraphics[width=11cm]{imgs/3zones.eps}
+     \end{center}
   \end{frame}
 
   \begin{frame}
@@ -179,8 +190,8 @@
      \frametitle{Working directory}
      \begin{itemize}
      \item C'est un snapshot d'une des version du projet.
-     \item Les fichiers sont issues de la base de donnée du git directory.
-     \item git les placent sur le disque pour que vous puissiez les utiliser ou les modifier.
+     \item Les fichiers sont issues de la base de données du git directory.
+     \item Git les place sur le disque pour que vous puissiez les utiliser ou les modifier.
      \end{itemize}
    \end{frame}
 
@@ -188,19 +199,25 @@
      \frametitle{Staging Area}
      \begin{itemize}
      \item C'est un fichier qui contient les informations de ce qui ira dans votre prochain commit.
-     \item Les fichiers sont issues de la base de donnée du git directory.
-     \item git les placent sur le disque pour que vous puissiez les utiliser ou les modifier.
      \end{itemize}
    \end{frame}
 
+%-------------------------------------------------------------------------------
+
+\section{Commandes de base}
+
   \begin{frame}
      \frametitle{Mon premier commit}
-     \includegraphics[width=9cm]{imgs/first_commit.eps}
+     \begin{center}
+       \includegraphics[width=9cm]{imgs/first_commit.eps}
+     \end{center}
   \end{frame}
 
   \begin{frame}
      \frametitle{git status}
-     \includegraphics[width=9cm]{imgs/status.eps}
+     \begin{center}
+       \includegraphics[width=9cm]{imgs/status.eps}
+     \end{center}
   \end{frame}
 
 \begin{frame}[fragile]\frametitle{Visualisation}
@@ -219,16 +236,28 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Récapitulatif des commandes}
+  \frametitle{Récapitulatif des commandes de base}
   \begin{semiverbatim}
+    \$ git init
     \$ git add
+    \$ git rm
     \$ git commit
     \$ git status
     \$ git diff
     \$ git log
+    \$ git tag
+    \$ git branch
+    \$ git checkout
   \end{semiverbatim}
+\end{frame}
 
-
+\begin{frame}
+  \frametitle{Outil graphique: gitg, gitk, git gui}
+  \begin{itemize}
+  \item gitg et gitk sont des outils graphique permettant de visualiser plus facilement l'arbre de commits.
+  \item git gui est un outil graphique permettant de commiter de maniére graphique.
+  \item il existe egalement Tortoise git sur windows
+  \end{itemize}
 \end{frame}
 
 %-------------------------------------------------------------------------------
@@ -245,16 +274,11 @@
   \begin{semiverbatim}
     \$ git clone http://git.buildroot.net/git/buildroot.git
   \end{semiverbatim}
-\end {frame}
-
-
-\begin{frame}
-  \frametitle{Outil graphique: git}
   \begin{itemize}
-  \item gitg est un outil graphique permettant de visualiser plus facilement l'arbre de commits.
-  \item il existe egalement tig ou tortoise git sur windows
+    \item Permet de copier à l'identique le dépot distant sur sa machine.
+    \item Les tags, branches et l'intégralité de tous les commits sont récupérés.
   \end{itemize}
-\end{frame}
+\end {frame}
 
 \begin{frame}
   \frametitle{Seveurs distants}
@@ -270,8 +294,8 @@
 \begin{frame}
   \frametitle{Récapitulatif des commandes}
   \begin{itemize}
-  \item push : action d'envoyer les commits ainsi que les relations entre commits vers le serveur distant (origin par défaut)
-  \item fetch : action de récuéprer les commits ainsi que les relations entre commits depuis le serveur distant
+  \item push : action d'envoyer les commits ainsi que les relations entre commits vers le serveur distant (origin par défaut).
+  \item fetch : action de récuéprer les commits ainsi que les relations entre commits depuis le serveur distant.
   \end{itemize}
 \end{frame}
 
@@ -294,8 +318,66 @@
   \begin{semiverbatim}
     \$ git checkout tag/sha1/branch
     
-    Git présente dans le systeme de fichier la version qu'on lui demande.
+    Git présente sur le systeme de fichier la version qu'on lui demande.
   \end{semiverbatim}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pull/Push}
+  \begin{semiverbatim}
+    \$ git pull
+
+    \$ git pull --rebase
+  \end{semiverbatim}
+  \begin{itemize}
+  \item Git récupére les commits distant et merge la branche actuelle avec la branche distante.
+  \item Par défaut git merge les branches lors d'un pull.
+  \item Rebase la branche actuelle avec la branche distante.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Merge/Rebase}
+    \begin{center}
+     \includegraphics[width=11cm]{imgs/before-merge.png}
+     \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Merge/Rebase}
+    \begin{center}
+     \includegraphics[width=11cm]{imgs/git-merge2.png}
+     \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Merge/Rebase}
+    \begin{center}
+     \includegraphics[width=11cm]{imgs/git-rebase.png}
+     \end{center}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\section{Commande avancées}
+\begin{frame}
+  \frametitle{Pour aller plus loin}
+  \begin{semiverbatim}
+    \$ git stash
+
+    \$ git reflog
+
+    \$ git reset
+  \end{semiverbatim}
+\end{frame}
+
+\section{Credits}
+\begin{frame}
+  \frametitle{Credits}
+  \begin{itemize}
+  \item http://blog.octo.com/git-dans-la-pratique-22/
+  \end{itemize}
+  
 \end{frame}
 
 \end{document}
