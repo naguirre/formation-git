@@ -218,8 +218,8 @@
 
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Récapitulatif des commandes}
-
+\begin{frame}[fragile]
+  \frametitle{Récapitulatif des commandes}
   \begin{semiverbatim}
     \$ git add
     \$ git commit
@@ -233,11 +233,69 @@
 
 %-------------------------------------------------------------------------------
 
-    \section{Travailler avec des serveurs distants}
-    \begin{frame}
-      \frametitle{Buildroot}
-        \includegraphics[width=9cm]{imgs/buildroot.eps}
-    \end{frame}
+\section{Travailler avec des serveurs distants}
+\begin{frame}
+  \frametitle{Buildroot}
+  \includegraphics[width=9cm]{imgs/buildroot.eps}
+\end{frame}
 
+
+\begin{frame}
+  \frametitle{git clone}
+  \begin{semiverbatim}
+    \$ git clone http://git.buildroot.net/git/buildroot.git
+  \end{semiverbatim}
+\end {frame}
+
+
+\begin{frame}
+  \frametitle{Outil graphique: git}
+  \begin{itemize}
+  \item gitg est un outil graphique permettant de visualiser plus facilement l'arbre de commits.
+  \item il existe egalement tig ou tortoise git sur windows
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Seveurs distants}
+  \begin{semiverbatim}
+    \$ git remote -v
+
+    origin git://git.buildroot.net/buildroot (fetch)
+
+    origin git://git.buildroot.net/buildroot (push)
+  \end{semiverbatim}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Récapitulatif des commandes}
+  \begin{itemize}
+  \item push : action d'envoyer les commits ainsi que les relations entre commits vers le serveur distant (origin par défaut)
+  \item fetch : action de récuéprer les commits ainsi que les relations entre commits depuis le serveur distant
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ajout d'un serveur}
+  \begin{semiverbatim}
+    \$ git remote add forge3 git@forge3:buildroot
+
+    \$ git remote -v
+
+    origin git@forge3:buildroot (fetch)
+
+    origin git@forge3:buildroot (push)
+
+  \end{semiverbatim}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Checkout}
+  \begin{semiverbatim}
+    \$ git checkout tag/sha1/branch
+    
+    Git présente dans le systeme de fichier la version qu'on lui demande.
+  \end{semiverbatim}
+\end{frame}
 
 \end{document}
